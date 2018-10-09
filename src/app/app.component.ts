@@ -11,9 +11,9 @@ export class AppComponent {
 
   constructor(private fb: FacebookService) {
     let initParams: InitParams = {
-      appId: '1234566778',
+      appId: '316076385873113',
       xfbml: true,
-      version: 'v2.8'
+      version: 'v3.1'
     };
     fb.init(initParams);
   }
