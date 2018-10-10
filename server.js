@@ -18,7 +18,7 @@ app.get('/webhook', function(req,res){
 
 app.post('/webhook', function(req, res) {
     // Lead Info 
-    console.log(JSON.stringify(req.body));
+    console.log(req.body);
     res.send("Success");
 });
 
