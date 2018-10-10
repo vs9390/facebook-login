@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FacebookService, InitParams, LoginResponse } from 'ngx-facebook';
+import { FacebookService, InitParams, LoginResponse, LoginOptions } from 'ngx-facebook';
 
 @Component({
   selector: 'app-root',
@@ -18,11 +18,52 @@ export class AppComponent {
     fb.init(initParams);
   }
 
+  // Simple login
   loginWithFacebook(): void {
-
     this.fb.login()
       .then((response: LoginResponse) => console.log(response))
       .catch((error: any) => console.error(error));
-
   }
+
+
+  // Login with different permissions
+  loginWithOptions(): void {
+    const loginOptions: LoginOptions = {
+      enable_profile_selector: true,
+      return_scopes: true,
+      scope: 'public_profile,user_friends,email,pages_show_list'
+    };
+
+    this.fb.login(loginOptions)
+      .then((res: LoginResponse) => {
+        console.log('Logged in', res);
+      })
+      .catch((error: any) => console.error(error));
+  }
+
+   // Check if user is login
+  getLoginStatus(): void  {
+    this.fb.getLoginStatus()
+      .then(console.log.bind(console))
+      .catch(console.error.bind(console));
+  }
+
+  // Get the user's profile
+  getProfile(): void  {
+    this.fb.api('/me')
+      .then((res: any) => {
+        console.log('Got the users profile', res);
+      })
+      .catch((error: any) => console.error(error));
+  }
+
+   // Get the users friends
+  getFriends(): void {
+    this.fb.api('/me/friends')
+      .then((res: any) => {
+        console.log('Got the users friends', res);
+      })
+      .catch((error: any) => console.error(error));
+  }
+
 }
