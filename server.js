@@ -1,7 +1,6 @@
 //Install express server
 const express = require('express');
 const path = require('path');
-var _ = require('lodash');
 
 const app = express();
 
