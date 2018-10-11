@@ -31,7 +31,7 @@ export class AppComponent {
     const loginOptions: LoginOptions = {
       enable_profile_selector: true,
       return_scopes: true,
-      scope: 'public_profile,user_friends,email,pages_show_list'
+      scope: 'public_profile,user_friends,manage_pages,email,pages_show_list'
     };
 
     this.fb.login(loginOptions)
@@ -62,6 +62,24 @@ export class AppComponent {
     this.fb.api('/me/friends')
       .then((res: any) => {
         console.log('Got the users friends', res);
+      })
+      .catch((error: any) => console.error(error));
+  }
+
+   // Get the pages list
+   getPages(): void {
+    this.fb.api('/me/accounts')
+      .then((res: any) => {
+        console.log('Got the users pages', res);
+      })
+      .catch((error: any) => console.error(error));
+  }
+
+  // Get the campaigns list
+  getCampaigns(): void {
+    this.fb.api('/act_1113979152100135/campaigns')
+      .then((res: any) => {
+        console.log('Got the page campaigns', res);
       })
       .catch((error: any) => console.error(error));
   }

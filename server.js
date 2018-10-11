@@ -20,7 +20,7 @@ app.get('/webhook', function(req,res){
 
 app.post('/webhook', function(req, res) {
     // Lead Info 
-    console.log(req.body);
+    console.log(JSON.stringify(req.body, null, 4));
     res.send("Success");
 });
 
