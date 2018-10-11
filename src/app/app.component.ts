@@ -84,4 +84,13 @@ export class AppComponent {
       .catch((error: any) => console.error(error));
   }
 
+  // Get the ads list
+  getAds(): void {
+    this.fb.api('/act_1113979152100135/ads')
+      .then((res: any) => {
+        console.log('Got the page campaigns', res);
+      })
+      .catch((error: any) => console.error(error));
+  }
+
 }
